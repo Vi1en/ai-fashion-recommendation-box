@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🤖 AI Fashion Recommendation Box
 
 An advanced, AI-powered React component that provides intelligent, personalized fashion recommendations using machine learning algorithms, style analysis, and trend intelligence.
@@ -180,3 +181,6 @@ This component is open source and available under the MIT License.
 ---
 
 **Powered by AI/ML for the future of fashion! 🚀✨**
+=======
+# ai-fashion-recommendation-box
+>>>>>>> 9f89876a960c726869f200acc54079670b4c5044
