@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import FashionRecommendationBox from '../FashionRecommendationBox';
 
 const Index: React.FC = () => {
   return (
@@ -20,20 +19,7 @@ const Index: React.FC = () => {
             >
               Try AI Fashion Stylist
             </Link>
-            <a
-              href="#demo"
-              className="inline-block bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition-colors"
-            >
-              View Demo
-            </a>
           </div>
-        </div>
-
-        <div id="demo" className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
-          <h2 className="text-3xl font-bold text-white mb-6 text-center">
-            Live Demo
-          </h2>
-          <FashionRecommendationBox />
         </div>
 
         <div className="mt-16 text-center">

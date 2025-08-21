@@ -77,3 +77,6 @@ jspm_packages/
 
 # DynamoDB Local files
 .dynamodb/
+
+# Local Netlify folder
+.netlify
