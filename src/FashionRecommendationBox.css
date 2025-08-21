@@ -346,41 +346,409 @@
   box-shadow: none;
 }
 
+/* Mobile-First Responsive Design */
 @media (max-width: 768px) {
   .fashion-recommendation-box {
-    padding: 1rem;
-    margin: 1rem;
+    padding: 15px;
   }
-  
+
+  .selection-section h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+
+  .selection-group {
+    margin-bottom: 20px;
+  }
+
+  .selection-group label {
+    font-size: 1em;
+    margin-bottom: 8px;
+  }
+
   .button-group {
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
-  
+
   .button-group button {
-    min-width: 80px;
-    font-size: 0.85rem;
-    padding: 10px 16px;
+    padding: 12px 16px;
+    font-size: 0.9em;
+    min-height: 44px; /* Touch-friendly minimum height */
+    border-radius: 12px;
   }
-  
-  .item-header {
-    flex-direction: column;
-    align-items: flex-start;
+
+  /* Selection Status Mobile */
+  .selection-status {
+    margin-top: 20px;
+    padding: 15px;
   }
-  
-  .item-scores {
-    align-items: flex-start;
-    width: 100%;
+
+  .status-text {
+    font-size: 1em;
+    margin-bottom: 15px;
   }
-  
+
+  .generate-button {
+    min-width: 100%;
+    padding: 16px 20px;
+    font-size: 1em;
+    min-height: 50px; /* Touch-friendly */
+  }
+
+  /* Results Section Mobile */
+  .results-section h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+
+  .ai-insights h3 {
+    font-size: 1.3em;
+    margin-bottom: 15px;
+  }
+
   .insights-grid {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
-  
+
+  .insight-item {
+    padding: 12px;
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+
+  .insight-label {
+    font-size: 0.9em;
+  }
+
+  .insight-value {
+    font-size: 1.1em;
+  }
+
+  /* Recommendations Mobile */
+  .recommendations-list {
+    gap: 15px;
+  }
+
+  .recommendation-item {
+    padding: 20px;
+    margin: 15px 0;
+  }
+
+  .item-header {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .item-header h4 {
+    font-size: 1.1em;
+    margin: 0;
+  }
+
+  .item-scores {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .item-scores span {
+    font-size: 0.85em;
+    padding: 6px 12px;
+  }
+
+  .ai-reasoning {
+    font-size: 0.9em;
+    margin: 15px 0;
+  }
+
+  /* Recommendation Details Mobile */
+  .recommendation-details {
+    margin: 15px 0;
+  }
+
+  .recommendation-details h5 {
+    font-size: 1em;
+    margin-bottom: 10px;
+  }
+
   .color-tags, .accessory-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
     justify-content: center;
   }
-  
-  .recommendation-details {
-    padding: 1rem;
+
+  .color-tag, .accessory-tag {
+    font-size: 0.8em;
+    padding: 6px 10px;
+  }
+
+  .fit-description, .height-description {
+    font-size: 0.9em;
+    line-height: 1.5;
+  }
+
+  .styling-tips ul {
+    padding-left: 20px;
+  }
+
+  .styling-tips li {
+    font-size: 0.9em;
+    margin-bottom: 6px;
+  }
+
+  /* Loading Section Mobile */
+  .loading-section {
+    padding: 30px 20px;
+  }
+
+  .ai-spinner {
+    width: 50px;
+    height: 50px;
+  }
+
+  .loading-section p {
+    font-size: 1em;
+    margin-top: 15px;
+  }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+  .fashion-recommendation-box {
+    padding: 10px;
+  }
+
+  .selection-section h2 {
+    font-size: 1.3em;
+  }
+
+  .button-group button {
+    padding: 14px 12px;
+    font-size: 0.85em;
+  }
+
+  .generate-button {
+    padding: 18px 16px;
+    font-size: 0.95em;
+  }
+
+  .recommendation-item {
+    padding: 15px;
+  }
+
+  .item-header h4 {
+    font-size: 1em;
+  }
+
+  .color-tags, .accessory-tags {
+    gap: 4px;
+  }
+
+  .color-tag, .accessory-tag {
+    font-size: 0.75em;
+    padding: 4px 8px;
+  }
+}
+
+/* Landscape Mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .button-group {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .insights-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .item-scores {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablet Responsiveness */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .fashion-recommendation-box {
+    padding: 25px;
+  }
+
+  .button-group {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .insights-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .generate-button {
+    min-width: 250px;
+  }
+}
+
+/* Large Screens */
+@media (min-width: 1025px) {
+  .fashion-recommendation-box {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .button-group {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+
+  .insights-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .button-group button:hover {
+    transform: none;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  }
+
+  .button-group button:active {
+    transform: scale(0.98);
+    box-shadow: 0 1px 4px rgba(102, 126, 234, 0.3);
+  }
+
+  .generate-button.active:hover {
+    transform: none;
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  }
+
+  .generate-button.active:active {
+    transform: scale(0.98);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+  }
+
+  .recommendation-item:hover {
+    transform: none;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  }
+
+  .recommendation-item:active {
+    transform: scale(0.99);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .ai-spinner {
+    border-width: 3px;
+  }
+
+  .button-group button {
+    border-width: 1.5px;
+  }
+}
+
+/* Reduced Motion for Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .button-group button,
+  .generate-button,
+  .recommendation-item,
+  .ai-spinner {
+    transition: none;
+    animation: none;
+  }
+
+  .ai-spinner {
+    animation: spin 2s linear infinite;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .fashion-recommendation-box {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #ffffff;
+  }
+
+  .selection-section h2 {
+    color: #ffffff;
+  }
+
+  .selection-group label {
+    color: #e0e0e0;
+  }
+
+  .button-group button {
+    background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+    color: #ffffff;
+    border-color: #4a5568;
+  }
+
+  .button-group button.selected {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-color: #667eea;
+  }
+
+  .status-text {
+    color: #e0e0e0;
+  }
+
+  .generate-button.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+
+  .generate-button.disabled {
+    background: #4a5568;
+    color: #a0aec0;
+  }
+
+  .recommendation-item {
+    background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+    border-color: #4a5568;
+    color: #ffffff;
+  }
+
+  .ai-insights {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+    border-color: rgba(102, 126, 234, 0.4);
+  }
+
+  .insight-item {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .insight-label {
+    color: #cbd5e0;
+  }
+
+  .insight-value {
+    color: #ffffff;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .fashion-recommendation-box {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+  }
+
+  .button-group,
+  .generate-button,
+  .loading-section {
+    display: none !important;
+  }
+
+  .recommendation-item {
+    break-inside: avoid;
+    border: 1px solid #ccc !important;
+    background: white !important;
+    color: black !important;
   }
 }
