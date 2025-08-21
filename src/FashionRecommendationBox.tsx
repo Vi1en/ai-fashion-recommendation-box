@@ -8,6 +8,17 @@ interface FashionItem {
   trendScore: number;
   finalScore?: number;
   aiReasoning?: string;
+  colors?: {
+    [skinTone: string]: string[];
+  };
+  fit?: {
+    [bodyShape: string]: string;
+  };
+  height?: {
+    [height: string]: string;
+  };
+  styling?: string[];
+  accessories?: string[];
 }
 
 const FashionRecommendationBox: React.FC = () => {
@@ -15,6 +26,9 @@ const FashionRecommendationBox: React.FC = () => {
   const [selectedStyle, setSelectedStyle] = useState<string>('');
   const [selectedOccasion, setSelectedOccasion] = useState<string>('');
   const [selectedSeason, setSelectedSeason] = useState<string>('');
+  const [selectedSkinTone, setSelectedSkinTone] = useState<string>('');
+  const [selectedBodyShape, setSelectedBodyShape] = useState<string>('');
+  const [selectedHeight, setSelectedHeight] = useState<string>('');
   const [recommendations, setRecommendations] = useState<FashionItem[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [aiInsights, setAiInsights] = useState<any>({});
@@ -31,53 +45,135 @@ const FashionRecommendationBox: React.FC = () => {
   ];
 
   const seasons = ['Spring', 'Summer', 'Fall', 'Winter'];
+  const skinTones = ['Fair', 'Light', 'Medium', 'Olive', 'Dark', 'Deep'];
+  const bodyShapes = ['Rectangle', 'Triangle', 'Inverted Triangle', 'Hourglass', 'Oval', 'Diamond'];
+  const heights = ['Petite (under 5\'4")', 'Average (5\'4"-5\'8")', 'Tall (over 5\'8")'];
 
-  // Enhanced fashion database with gender-specific recommendations
+  // Enhanced fashion database with comprehensive recommendations
   const fashionDatabase: any = {
     'Male': {
       'Casual': {
         'Work': {
           'Spring': [
-            { item: 'Oxford shirt with chinos', score: 0.95, confidence: 0.92, trendScore: 0.88 },
-            { item: 'Polo shirt with dark jeans', score: 0.87, confidence: 0.85, trendScore: 0.82 },
-            { item: 'Sweater vest with button-down', score: 0.89, confidence: 0.88, trendScore: 0.85 }
+            {
+              item: 'Oxford button-down shirt with chino pants',
+              score: 0.95,
+              confidence: 0.92,
+              trendScore: 0.88,
+              colors: {
+                'Fair': ['Light blue', 'White', 'Pale pink', 'Mint green'],
+                'Light': ['Navy blue', 'Light gray', 'Mint green', 'Dusty blue'],
+                'Medium': ['Olive green', 'Burnt orange', 'Navy blue', 'Terracotta'],
+                'Olive': ['Deep burgundy', 'Forest green', 'Navy blue', 'Rust'],
+                'Dark': ['Cream', 'Light blue', 'Coral', 'Emerald green'],
+                'Deep': ['Gold', 'Cream', 'Light blue', 'Coral']
+              },
+              fit: {
+                'Rectangle': 'Regular fit shirt, straight leg chinos with slight taper',
+                'Triangle': 'Fitted shirt, bootcut chinos to balance proportions',
+                'Inverted Triangle': 'Relaxed fit shirt, slim chinos to balance broad shoulders',
+                'Hourglass': 'Slim fit shirt and chinos for defined silhouette',
+                'Oval': 'Comfortable fit shirt with stretch, straight leg chinos',
+                'Diamond': 'Loose fit shirt, straight leg chinos for comfort'
+              },
+              height: {
+                'Petite': 'Shorter shirt hem, ankle-length chinos',
+                'Average': 'Standard shirt length, full-length chinos',
+                'Tall': 'Longer shirt hem, full-length chinos'
+              },
+              styling: [
+                'Tuck in the shirt for a polished look',
+                'Add a leather belt to define the waist',
+                'Roll up sleeves for a casual touch',
+                'Consider a light cardigan for layering'
+              ],
+              accessories: [
+                'Leather belt in brown or black',
+                'Minimalist watch',
+                'Leather loafers or oxfords',
+                'Lightweight scarf for cooler days'
+              ]
+            },
+            {
+              item: 'Polo shirt with dark wash jeans',
+              score: 0.87,
+              confidence: 0.85,
+              trendScore: 0.82,
+              colors: {
+                'Fair': ['Navy blue', 'Forest green', 'Burgundy', 'Charcoal'],
+                'Light': ['Olive green', 'Navy blue', 'Charcoal', 'Deep red'],
+                'Medium': ['Rust orange', 'Navy blue', 'Olive green', 'Burgundy'],
+                'Olive': ['Deep burgundy', 'Navy blue', 'Charcoal', 'Forest green'],
+                'Dark': ['Cream', 'Light blue', 'Coral', 'Emerald green'],
+                'Deep': ['Gold', 'Cream', 'Light blue', 'Coral']
+              },
+              fit: {
+                'Rectangle': 'Classic fit polo, straight leg jeans with slight taper',
+                'Triangle': 'Fitted polo, bootcut jeans to add volume to lower body',
+                'Inverted Triangle': 'Relaxed polo, slim jeans to balance broad shoulders',
+                'Hourglass': 'Slim fit polo, straight leg jeans for defined silhouette',
+                'Oval': 'Comfortable fit polo with stretch, straight leg jeans',
+                'Diamond': 'Loose polo, straight leg jeans for comfort'
+              },
+              height: {
+                'Petite': 'Shorter polo hem, ankle-length jeans',
+                'Average': 'Standard polo length, full-length jeans',
+                'Tall': 'Longer polo hem, full-length jeans'
+              },
+              styling: [
+                'Leave polo untucked for casual appeal',
+                'Consider a light jacket for layering',
+                'Roll up sleeves for a relaxed look',
+                'Add a statement watch or bracelet'
+              ],
+              accessories: [
+                'Leather belt',
+                'Statement watch',
+                'Sneakers or casual loafers',
+                'Lightweight jacket'
+              ]
+            }
           ],
           'Summer': [
-            { item: 'Linen button-down with shorts', score: 0.93, confidence: 0.91, trendScore: 0.89 },
-            { item: 'Polo shirt with khakis', score: 0.91, confidence: 0.89, trendScore: 0.87 },
-            { item: 'T-shirt with chino pants', score: 0.85, confidence: 0.83, trendScore: 0.81 }
-          ],
-          'Fall': [
-            { item: 'Sweater with dark jeans', score: 0.94, confidence: 0.92, trendScore: 0.90 },
-            { item: 'Blazer with t-shirt and jeans', score: 0.88, confidence: 0.86, trendScore: 0.84 },
-            { item: 'Turtleneck with chinos', score: 0.90, confidence: 0.88, trendScore: 0.86 }
-          ],
-          'Winter': [
-            { item: 'Wool sweater with dark jeans', score: 0.96, confidence: 0.94, trendScore: 0.92 },
-            { item: 'Fleece jacket with jeans', score: 0.89, confidence: 0.87, trendScore: 0.85 },
-            { item: 'Thermal shirt with chinos', score: 0.87, confidence: 0.85, trendScore: 0.83 }
-          ]
-        },
-        'Weekend': {
-          'Spring': [
-            { item: 'Denim jacket with t-shirt and jeans', score: 0.92, confidence: 0.90, trendScore: 0.88 },
-            { item: 'Sneakers with joggers', score: 0.88, confidence: 0.86, trendScore: 0.84 },
-            { item: 'Hoodie with shorts', score: 0.85, confidence: 0.83, trendScore: 0.81 }
-          ],
-          'Summer': [
-            { item: 'Tank top with shorts', score: 0.94, confidence: 0.92, trendScore: 0.90 },
-            { item: 'Polo shirt with shorts', score: 0.96, confidence: 0.94, trendScore: 0.92 },
-            { item: 'Flip flops with everything', score: 0.82, confidence: 0.80, trendScore: 0.78 }
-          ],
-          'Fall': [
-            { item: 'Flannel shirt with jeans', score: 0.93, confidence: 0.91, trendScore: 0.89 },
-            { item: 'Sweatshirt with joggers', score: 0.89, confidence: 0.87, trendScore: 0.85 },
-            { item: 'Boots with jeans and flannel', score: 0.91, confidence: 0.89, trendScore: 0.87 }
-          ],
-          'Winter': [
-            { item: 'Puffer jacket with jeans', score: 0.95, confidence: 0.93, trendScore: 0.91 },
-            { item: 'Beanie with sweater and jeans', score: 0.88, confidence: 0.86, trendScore: 0.84 },
-            { item: 'Scarf with coat and jeans', score: 0.90, confidence: 0.88, trendScore: 0.86 }
+            {
+              item: 'Linen button-down with shorts',
+              score: 0.93,
+              confidence: 0.91,
+              trendScore: 0.89,
+              colors: {
+                'Fair': ['White', 'Light blue', 'Pale yellow', 'Mint green'],
+                'Light': ['Cream', 'Dusty blue', 'Sage green', 'Light pink'],
+                'Medium': ['Terracotta', 'Olive green', 'Navy blue', 'Mustard'],
+                'Olive': ['Deep burgundy', 'Forest green', 'Navy blue', 'Rust'],
+                'Dark': ['Cream', 'Light blue', 'Coral', 'Emerald green'],
+                'Deep': ['Gold', 'Cream', 'Light blue', 'Coral']
+              },
+              fit: {
+                'Rectangle': 'Regular fit linen shirt, tailored shorts',
+                'Triangle': 'Fitted shirt, slightly longer shorts',
+                'Inverted Triangle': 'Relaxed fit shirt, slim shorts',
+                'Hourglass': 'Slim fit shirt, tailored shorts',
+                'Oval': 'Comfortable fit shirt, relaxed shorts',
+                'Diamond': 'Loose fit shirt, comfortable shorts'
+              },
+              height: {
+                'Petite': 'Shorter shirt, above-knee shorts',
+                'Average': 'Standard shirt length, knee-length shorts',
+                'Tall': 'Longer shirt, knee-length shorts'
+              },
+              styling: [
+                'Leave shirt untucked for summer casual',
+                'Roll up sleeves for ventilation',
+                'Consider a light scarf for style',
+                'Add summer accessories'
+              ],
+              accessories: [
+                'Straw hat',
+                'Sunglasses',
+                'Canvas sneakers',
+                'Lightweight scarf'
+              ]
+            }
           ]
         }
       }
@@ -86,14 +182,45 @@ const FashionRecommendationBox: React.FC = () => {
       'Casual': {
         'Work': {
           'Spring': [
-            { item: 'Blouse with high-waisted pants', score: 0.95, confidence: 0.93, trendScore: 0.91 },
-            { item: 'Cardigan with blouse and jeans', score: 0.92, confidence: 0.90, trendScore: 0.88 },
-            { item: 'T-shirt dress with blazer', score: 0.89, confidence: 0.87, trendScore: 0.85 }
-          ],
-          'Summer': [
-            { item: 'Linen dress with sandals', score: 0.94, confidence: 0.92, trendScore: 0.90 },
-            { item: 'Blouse with wide-leg pants', score: 0.93, confidence: 0.91, trendScore: 0.89 },
-            { item: 'Midi skirt with tank top', score: 0.91, confidence: 0.89, trendScore: 0.87 }
+            {
+              item: 'Light blazer with high-waist jeans',
+              score: 0.95,
+              confidence: 0.93,
+              trendScore: 0.91,
+              colors: {
+                'Fair': ['Blush pink', 'Light blue', 'Cream', 'Mint green'],
+                'Light': ['Sage green', 'Dusty blue', 'Cream', 'Mauve'],
+                'Medium': ['Terracotta', 'Olive green', 'Navy blue', 'Mustard'],
+                'Olive': ['Deep burgundy', 'Forest green', 'Navy blue', 'Rust'],
+                'Dark': ['Cream', 'Light blue', 'Coral', 'Emerald green'],
+                'Deep': ['Gold', 'Cream', 'Light blue', 'Coral']
+              },
+              fit: {
+                'Rectangle': 'Structured blazer, high-waist straight leg jeans',
+                'Triangle': 'Fitted blazer, high-waist bootcut jeans',
+                'Inverted Triangle': 'Relaxed blazer, high-waist slim jeans',
+                'Hourglass': 'Fitted blazer, high-waist straight leg jeans',
+                'Oval': 'Comfortable blazer with stretch, high-waist jeans',
+                'Diamond': 'Loose blazer, high-waist straight leg jeans'
+              },
+              height: {
+                'Petite': 'Cropped blazer, ankle-length high-waist jeans',
+                'Average': 'Standard blazer length, full-length high-waist jeans',
+                'Tall': 'Long blazer, full-length high-waist jeans'
+              },
+              styling: [
+                'Tuck in a fitted top under the blazer',
+                'Add a statement belt to define the waist',
+                'Consider a silk scarf for elegance',
+                'Layer with a light sweater'
+              ],
+              accessories: [
+                'Statement belt',
+                'Silk scarf',
+                'Structured handbag',
+                'Pointed toe flats or heels'
+              ]
+            }
           ]
         }
       }
@@ -160,6 +287,15 @@ const FashionRecommendationBox: React.FC = () => {
         break;
       case 'season':
         setSelectedSeason(value);
+        break;
+      case 'skinTone':
+        setSelectedSkinTone(value);
+        break;
+      case 'bodyShape':
+        setSelectedBodyShape(value);
+        break;
+      case 'height':
+        setSelectedHeight(value);
         break;
     }
   };
@@ -228,6 +364,51 @@ const FashionRecommendationBox: React.FC = () => {
             ))}
           </div>
         </div>
+
+        <div className="selection-group">
+          <label>Skin Tone:</label>
+          <div className="button-group">
+            {skinTones.map(tone => (
+              <button
+                key={tone}
+                className={selectedSkinTone === tone ? 'selected' : ''}
+                onClick={() => handleSelection('skinTone', tone)}
+              >
+                {tone}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="selection-group">
+          <label>Body Shape:</label>
+          <div className="button-group">
+            {bodyShapes.map(shape => (
+              <button
+                key={shape}
+                className={selectedBodyShape === shape ? 'selected' : ''}
+                onClick={() => handleSelection('bodyShape', shape)}
+              >
+                {shape}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="selection-group">
+          <label>Height:</label>
+          <div className="button-group">
+            {heights.map(height => (
+              <button
+                key={height}
+                className={selectedHeight === height ? 'selected' : ''}
+                onClick={() => handleSelection('height', height)}
+              >
+                {height}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
       {isLoading && (
@@ -282,7 +463,60 @@ const FashionRecommendationBox: React.FC = () => {
                     <span className="trend">Trend: {(item.trendScore * 100).toFixed(0)}%</span>
                   </div>
                 </div>
+                
                 <p className="ai-reasoning">{item.aiReasoning}</p>
+
+                {/* Color Recommendations */}
+                {selectedSkinTone && item.colors && item.colors[selectedSkinTone] && (
+                  <div className="recommendation-details">
+                    <h5>🎨 Best Colors for {selectedSkinTone} Skin:</h5>
+                    <div className="color-tags">
+                      {item.colors[selectedSkinTone].map((color, idx) => (
+                        <span key={idx} className="color-tag">{color}</span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Fit Recommendations */}
+                {selectedBodyShape && item.fit && item.fit[selectedBodyShape] && (
+                  <div className="recommendation-details">
+                    <h5>📐 Perfect Fit for {selectedBodyShape} Body:</h5>
+                    <p className="fit-description">{item.fit[selectedBodyShape]}</p>
+                  </div>
+                )}
+
+                {/* Height Recommendations */}
+                {selectedHeight && item.height && item.height[selectedHeight.split(' ')[0]] && (
+                  <div className="recommendation-details">
+                    <h5>📏 Length Adjustments for {selectedHeight.split(' ')[0]} Height:</h5>
+                    <p className="height-description">{item.height[selectedHeight.split(' ')[0]]}</p>
+                  </div>
+                )}
+
+                {/* Styling Tips */}
+                {item.styling && item.styling.length > 0 && (
+                  <div className="recommendation-details">
+                    <h5>💡 Styling Tips:</h5>
+                    <ul className="styling-tips">
+                      {item.styling.map((tip, idx) => (
+                        <li key={idx}>{tip}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Accessories */}
+                {item.accessories && item.accessories.length > 0 && (
+                  <div className="recommendation-details">
+                    <h5>👜 Recommended Accessories:</h5>
+                    <div className="accessory-tags">
+                      {item.accessories.map((accessory, idx) => (
+                        <span key={idx} className="accessory-tag">{accessory}</span>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             ))}
           </div>
