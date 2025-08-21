@@ -221,9 +221,28 @@ const FashionRecommendationBox: React.FC = () => {
 
   // AI-powered recommendation engine
   const generateRecommendations = useCallback(() => {
-    if (!selectedGender || !selectedStyle || !selectedOccasion || !selectedSeason) {
+    if (!selectedGender || !selectedStyle || !selectedOccasion || !selectedSeason || !selectedSkinTone || !selectedBodyShape || !selectedHeight) {
+      console.log('Missing selections:', {
+        gender: selectedGender,
+        style: selectedStyle,
+        occasion: selectedOccasion,
+        season: selectedSeason,
+        skinTone: selectedSkinTone,
+        bodyShape: selectedBodyShape,
+        height: selectedHeight
+      });
       return;
     }
+
+    console.log('Generating recommendations for:', {
+      gender: selectedGender,
+      style: selectedStyle,
+      occasion: selectedOccasion,
+      season: selectedSeason,
+      skinTone: selectedSkinTone,
+      bodyShape: selectedBodyShape,
+      height: selectedHeight
+    });
 
     setIsLoading(true);
 
@@ -231,7 +250,10 @@ const FashionRecommendationBox: React.FC = () => {
     setTimeout(() => {
       const baseRecommendations = fashionDatabase[selectedGender]?.[selectedStyle]?.[selectedOccasion]?.[selectedSeason] || [];
       
+      console.log('Base recommendations found:', baseRecommendations);
+      
       if (baseRecommendations.length === 0) {
+        console.log('No specific recommendations found, generating fallback');
         // Generate fallback recommendations
         const fallbackRecommendations = [
           {
@@ -240,7 +262,26 @@ const FashionRecommendationBox: React.FC = () => {
             confidence: 0.80,
             trendScore: 0.82,
             finalScore: 0.82,
-            aiReasoning: `Perfect ${selectedStyle.toLowerCase()} style for ${selectedOccasion.toLowerCase()} in ${selectedSeason.toLowerCase()}`
+            aiReasoning: `Perfect ${selectedStyle.toLowerCase()} style for ${selectedOccasion.toLowerCase()} in ${selectedSeason.toLowerCase()}`,
+            colors: {
+              [selectedSkinTone]: ['Navy Blue', 'Charcoal', 'Cream', 'Olive Green']
+            },
+            fit: {
+              [selectedBodyShape]: 'Classic fit with modern styling'
+            },
+            height: {
+              [selectedHeight]: 'Standard length with room for adjustment'
+            },
+            styling: [
+              'Layer with a light jacket or cardigan',
+              'Add a statement accessory',
+              'Consider the weather conditions'
+            ],
+            accessories: [
+              'Classic watch',
+              'Leather belt',
+              'Comfortable shoes'
+            ]
           }
         ];
         setRecommendations(fallbackRecommendations);
@@ -262,12 +303,14 @@ const FashionRecommendationBox: React.FC = () => {
           return {
             ...item,
             finalScore: finalScore,
-            aiReasoning: `Perfect for ${selectedStyle.toLowerCase()} style in ${selectedSeason.toLowerCase()}`
+            aiReasoning: `Perfect for ${selectedStyle.toLowerCase()} style in ${selectedSeason.toLowerCase()} with personalized fit and color recommendations`
           };
         });
 
         // Sort by AI score
         const sortedRecommendations = scoredRecommendations.sort((a: any, b: any) => b.finalScore - a.finalScore);
+        
+        console.log('Final recommendations:', sortedRecommendations.slice(0, 5));
         
         setRecommendations(sortedRecommendations.slice(0, 5));
         setAiInsights({
@@ -281,10 +324,10 @@ const FashionRecommendationBox: React.FC = () => {
       }
       setIsLoading(false);
     }, 2000);
-  }, [selectedGender, selectedStyle, selectedOccasion, selectedSeason]);
+  }, [selectedGender, selectedStyle, selectedOccasion, selectedSeason, selectedSkinTone, selectedBodyShape, selectedHeight]);
 
   useEffect(() => {
-    if (selectedGender && selectedStyle && selectedOccasion && selectedSeason) {
+    if (selectedGender && selectedStyle && selectedOccasion && selectedSeason && selectedSkinTone && selectedBodyShape && selectedHeight) {
       generateRecommendations();
     }
   }, [generateRecommendations]);
@@ -423,6 +466,24 @@ const FashionRecommendationBox: React.FC = () => {
               </button>
             ))}
           </div>
+        </div>
+
+        {/* Selection Status and Generate Button */}
+        <div className="selection-status">
+          <p className="status-text">
+            {selectedGender && selectedStyle && selectedOccasion && selectedSeason && selectedSkinTone && selectedBodyShape && selectedHeight 
+              ? '✅ All preferences selected! Click below to get your personalized recommendations.'
+              : '📝 Please select all preferences above to get personalized fashion recommendations.'
+            }
+          </p>
+          
+          <button 
+            className={`generate-button ${selectedGender && selectedStyle && selectedOccasion && selectedSeason && selectedSkinTone && selectedBodyShape && selectedHeight ? 'active' : 'disabled'}`}
+            onClick={generateRecommendations}
+            disabled={!selectedGender || !selectedStyle || !selectedOccasion || !selectedSeason || !selectedSkinTone || !selectedBodyShape || !selectedHeight}
+          >
+            {isLoading ? '🤖 AI Analyzing...' : '🚀 Get AI Fashion Recommendations'}
+          </button>
         </div>
       </div>
 

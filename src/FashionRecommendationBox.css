@@ -293,6 +293,59 @@
   box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
 }
 
+/* Selection Status and Generate Button */
+.selection-status {
+  margin-top: 30px;
+  text-align: center;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  border-radius: 15px;
+  border: 2px solid rgba(102, 126, 234, 0.3);
+}
+
+.status-text {
+  font-size: 1.1em;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.generate-button {
+  padding: 15px 30px;
+  font-size: 1.1em;
+  font-weight: 600;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  min-width: 300px;
+}
+
+.generate-button.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.generate-button.active:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+}
+
+.generate-button.disabled {
+  background: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.generate-button.disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
 @media (max-width: 768px) {
   .fashion-recommendation-box {
     padding: 1rem;
