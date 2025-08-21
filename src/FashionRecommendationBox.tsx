@@ -41,32 +41,32 @@ const FashionRecommendationBox: React.FC = () => {
   const bodyShapes = ['Rectangle', 'Triangle', 'Inverted Triangle', 'Hourglass', 'Oval', 'Diamond'];
   const heights = ['Petite', 'Average', 'Tall'];
 
-  // Simplified fashion database
+  // Enhanced fashion database with comprehensive recommendations
   const fashionDatabase: any = {
     'Male': {
       'Casual': {
         'Work': {
           'Spring': [
             {
-              item: 'Oxford shirt with chino pants',
+              item: 'Oxford button-down shirt with chino pants',
               score: 0.95,
               confidence: 0.92,
               trendScore: 0.88,
               colors: {
-                'Fair': ['Light blue', 'White', 'Pale pink'],
-                'Light': ['Navy blue', 'Light gray', 'Mint green'],
-                'Medium': ['Olive green', 'Burnt orange', 'Navy blue'],
-                'Olive': ['Deep burgundy', 'Forest green', 'Navy blue'],
-                'Dark': ['Cream', 'Light blue', 'Coral'],
-                'Deep': ['Gold', 'Cream', 'Light blue']
+                'Fair': ['Light blue', 'White', 'Pale pink', 'Mint green'],
+                'Light': ['Navy blue', 'Light gray', 'Mint green', 'Dusty blue'],
+                'Medium': ['Olive green', 'Burnt orange', 'Navy blue', 'Terracotta'],
+                'Olive': ['Deep burgundy', 'Forest green', 'Navy blue', 'Rust'],
+                'Dark': ['Cream', 'Light blue', 'Coral', 'Emerald green'],
+                'Deep': ['Gold', 'Cream', 'Light blue', 'Coral']
               },
               fit: {
-                'Rectangle': 'Regular fit shirt, straight leg chinos',
-                'Triangle': 'Fitted shirt, bootcut chinos',
-                'Inverted Triangle': 'Relaxed fit shirt, slim chinos',
-                'Hourglass': 'Slim fit shirt and chinos',
-                'Oval': 'Comfortable fit shirt with stretch',
-                'Diamond': 'Loose fit shirt, comfortable chinos'
+                'Rectangle': 'Regular fit shirt, straight leg chinos with slight taper',
+                'Triangle': 'Fitted shirt, bootcut chinos to balance proportions',
+                'Inverted Triangle': 'Relaxed fit shirt, slim chinos to balance broad shoulders',
+                'Hourglass': 'Slim fit shirt and chinos for defined silhouette',
+                'Oval': 'Comfortable fit shirt with stretch, straight leg chinos',
+                'Diamond': 'Loose fit shirt, straight leg chinos for comfort'
               },
               height: {
                 'Petite': 'Shorter shirt hem, ankle-length chinos',
@@ -76,12 +76,94 @@ const FashionRecommendationBox: React.FC = () => {
               styling: [
                 'Tuck in the shirt for a polished look',
                 'Add a leather belt to define the waist',
-                'Roll up sleeves for a casual touch'
+                'Roll up sleeves for a casual touch',
+                'Consider a light cardigan for layering'
               ],
               accessories: [
                 'Leather belt in brown or black',
                 'Minimalist watch',
-                'Leather loafers or oxfords'
+                'Leather loafers or oxfords',
+                'Lightweight scarf for cooler days'
+              ]
+            },
+            {
+              item: 'Polo shirt with dark wash jeans',
+              score: 0.87,
+              confidence: 0.85,
+              trendScore: 0.82,
+              colors: {
+                'Fair': ['Navy blue', 'Forest green', 'Burgundy', 'Charcoal'],
+                'Light': ['Olive green', 'Navy blue', 'Charcoal', 'Deep red'],
+                'Medium': ['Rust orange', 'Navy blue', 'Olive green', 'Burgundy'],
+                'Olive': ['Deep burgundy', 'Navy blue', 'Charcoal', 'Forest green'],
+                'Dark': ['Cream', 'Light blue', 'Coral', 'Emerald green'],
+                'Deep': ['Gold', 'Cream', 'Light blue', 'Coral']
+              },
+              fit: {
+                'Rectangle': 'Classic fit polo, straight leg jeans with slight taper',
+                'Triangle': 'Fitted polo, bootcut jeans to add volume to lower body',
+                'Inverted Triangle': 'Relaxed polo, slim jeans to balance broad shoulders',
+                'Hourglass': 'Slim fit polo, straight leg jeans for defined silhouette',
+                'Oval': 'Comfortable fit polo with stretch, straight leg jeans',
+                'Diamond': 'Loose polo, straight leg jeans for comfort'
+              },
+              height: {
+                'Petite': 'Shorter polo hem, ankle-length jeans',
+                'Average': 'Standard polo length, full-length jeans',
+                'Tall': 'Longer polo hem, full-length jeans'
+              },
+              styling: [
+                'Leave polo untucked for casual appeal',
+                'Consider a light jacket for layering',
+                'Roll up sleeves for a relaxed look',
+                'Add a statement watch or bracelet'
+              ],
+              accessories: [
+                'Leather belt',
+                'Statement watch',
+                'Sneakers or casual loafers',
+                'Lightweight jacket'
+              ]
+            }
+          ],
+          'Summer': [
+            {
+              item: 'Linen button-down with shorts',
+              score: 0.93,
+              confidence: 0.91,
+              trendScore: 0.89,
+              colors: {
+                'Fair': ['White', 'Light blue', 'Pale yellow', 'Mint green'],
+                'Light': ['Cream', 'Dusty blue', 'Sage green', 'Light pink'],
+                'Medium': ['Terracotta', 'Olive green', 'Navy blue', 'Mustard'],
+                'Olive': ['Deep burgundy', 'Forest green', 'Navy blue', 'Rust'],
+                'Dark': ['Cream', 'Light blue', 'Coral', 'Emerald green'],
+                'Deep': ['Gold', 'Cream', 'Light blue', 'Coral']
+              },
+              fit: {
+                'Rectangle': 'Regular fit linen shirt, tailored shorts',
+                'Triangle': 'Fitted shirt, slightly longer shorts',
+                'Inverted Triangle': 'Relaxed fit shirt, slim shorts',
+                'Hourglass': 'Slim fit shirt, tailored shorts',
+                'Oval': 'Comfortable fit shirt, relaxed shorts',
+                'Diamond': 'Loose fit shirt, comfortable shorts'
+              },
+              height: {
+                'Petite': 'Shorter shirt, above-knee shorts',
+                'Average': 'Standard shirt length, knee-length shorts',
+                'Tall': 'Longer shirt, knee-length shorts'
+              },
+              styling: [
+                'Leave shirt untucked for summer casual',
+                'Roll up sleeves for ventilation',
+                'Consider a light scarf for style',
+                'Add summer accessories'
+              ],
+              accessories: [
+                'Straw hat',
+                'Sunglasses',
+                'Canvas sneakers',
+                'Lightweight scarf'
               ]
             }
           ]
@@ -98,35 +180,37 @@ const FashionRecommendationBox: React.FC = () => {
               confidence: 0.93,
               trendScore: 0.91,
               colors: {
-                'Fair': ['Blush pink', 'Light blue', 'Cream'],
-                'Light': ['Sage green', 'Dusty blue', 'Cream'],
-                'Medium': ['Terracotta', 'Olive green', 'Navy blue'],
-                'Olive': ['Deep burgundy', 'Forest green', 'Navy blue'],
-                'Dark': ['Cream', 'Light blue', 'Coral'],
-                'Deep': ['Gold', 'Cream', 'Light blue']
+                'Fair': ['Blush pink', 'Light blue', 'Cream', 'Mint green'],
+                'Light': ['Sage green', 'Dusty blue', 'Cream', 'Mauve'],
+                'Medium': ['Terracotta', 'Olive green', 'Navy blue', 'Mustard'],
+                'Olive': ['Deep burgundy', 'Forest green', 'Navy blue', 'Rust'],
+                'Dark': ['Cream', 'Light blue', 'Coral', 'Emerald green'],
+                'Deep': ['Gold', 'Cream', 'Light blue', 'Coral']
               },
               fit: {
                 'Rectangle': 'Structured blazer, high-waist straight leg jeans',
                 'Triangle': 'Fitted blazer, high-waist bootcut jeans',
                 'Inverted Triangle': 'Relaxed blazer, high-waist slim jeans',
                 'Hourglass': 'Fitted blazer, high-waist straight leg jeans',
-                'Oval': 'Comfortable blazer with stretch',
+                'Oval': 'Comfortable blazer with stretch, high-waist jeans',
                 'Diamond': 'Loose blazer, high-waist straight leg jeans'
               },
               height: {
-                'Petite': 'Cropped blazer, ankle-length jeans',
-                'Average': 'Standard blazer length, full-length jeans',
-                'Tall': 'Long blazer, full-length jeans'
+                'Petite': 'Cropped blazer, ankle-length high-waist jeans',
+                'Average': 'Standard blazer length, full-length high-waist jeans',
+                'Tall': 'Long blazer, full-length high-waist jeans'
               },
               styling: [
                 'Tuck in a fitted top under the blazer',
                 'Add a statement belt to define the waist',
-                'Consider a silk scarf for elegance'
+                'Consider a silk scarf for elegance',
+                'Layer with a light sweater'
               ],
               accessories: [
                 'Statement belt',
                 'Silk scarf',
-                'Structured handbag'
+                'Structured handbag',
+                'Pointed toe flats or heels'
               ]
             }
           ]
@@ -147,33 +231,56 @@ const FashionRecommendationBox: React.FC = () => {
     setTimeout(() => {
       const baseRecommendations = fashionDatabase[selectedGender]?.[selectedStyle]?.[selectedOccasion]?.[selectedSeason] || [];
       
-      // AI scoring and ranking
-      const scoredRecommendations = baseRecommendations.map((item: FashionItem) => {
-        const personalizationBonus = 0.5;
-        const trendBonus = item.trendScore * 0.2;
-        const finalScore = (item.score + personalizationBonus + trendBonus) / 3;
-        
-        return {
-          ...item,
-          finalScore: finalScore,
-          aiReasoning: `Perfect for ${selectedStyle.toLowerCase()} style in ${selectedSeason.toLowerCase()}`
-        };
-      });
+      if (baseRecommendations.length === 0) {
+        // Generate fallback recommendations
+        const fallbackRecommendations = [
+          {
+            item: `${selectedStyle} outfit for ${selectedOccasion} in ${selectedSeason}`,
+            score: 0.85,
+            confidence: 0.80,
+            trendScore: 0.82,
+            finalScore: 0.82,
+            aiReasoning: `Perfect ${selectedStyle.toLowerCase()} style for ${selectedOccasion.toLowerCase()} in ${selectedSeason.toLowerCase()}`
+          }
+        ];
+        setRecommendations(fallbackRecommendations);
+        setAiInsights({
+          genderFit: 0.85,
+          styleConfidence: 0.80,
+          occasionMatch: 0.85,
+          seasonalFit: 0.80,
+          overallScore: 0.82,
+          trendAlignment: 0.82
+        });
+      } else {
+        // AI scoring and ranking
+        const scoredRecommendations = baseRecommendations.map((item: FashionItem) => {
+          const personalizationBonus = 0.5;
+          const trendBonus = item.trendScore * 0.2;
+          const finalScore = (item.score + personalizationBonus + trendBonus) / 3;
+          
+          return {
+            ...item,
+            finalScore: finalScore,
+            aiReasoning: `Perfect for ${selectedStyle.toLowerCase()} style in ${selectedSeason.toLowerCase()}`
+          };
+        });
 
-      // Sort by AI score
-      const sortedRecommendations = scoredRecommendations.sort((a: any, b: any) => b.finalScore - a.finalScore);
-      
-      setRecommendations(sortedRecommendations.slice(0, 3));
-      setAiInsights({
-        genderFit: Math.random() * 0.3 + 0.7,
-        styleConfidence: Math.random() * 0.2 + 0.8,
-        occasionMatch: Math.random() * 0.2 + 0.8,
-        seasonalFit: Math.random() * 0.2 + 0.8,
-        overallScore: sortedRecommendations[0]?.finalScore || 0.85,
-        trendAlignment: sortedRecommendations[0]?.trendScore || 0.88
-      });
+        // Sort by AI score
+        const sortedRecommendations = scoredRecommendations.sort((a: any, b: any) => b.finalScore - a.finalScore);
+        
+        setRecommendations(sortedRecommendations.slice(0, 5));
+        setAiInsights({
+          genderFit: Math.random() * 0.3 + 0.7,
+          styleConfidence: Math.random() * 0.2 + 0.8,
+          occasionMatch: Math.random() * 0.2 + 0.8,
+          seasonalFit: Math.random() * 0.2 + 0.8,
+          overallScore: sortedRecommendations[0]?.finalScore || 0.85,
+          trendAlignment: sortedRecommendations[0]?.trendScore || 0.88
+        });
+      }
       setIsLoading(false);
-    }, 1500);
+    }, 2000);
   }, [selectedGender, selectedStyle, selectedOccasion, selectedSeason]);
 
   useEffect(() => {
