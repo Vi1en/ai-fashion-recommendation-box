@@ -1,7 +1,10 @@
-<<<<<<< HEAD
 # 🤖 AI Fashion Recommendation Box
 
 An advanced, AI-powered React component that provides intelligent, personalized fashion recommendations using machine learning algorithms, style analysis, and trend intelligence.
+
+## 🌐 Live Demo
+
+**[🚀 Try the AI Fashion Recommendation Box Live!](https://spectacular-naiad-d809f7.netlify.app)**
 
 ## 🚀 AI/ML Features
 
@@ -84,6 +87,30 @@ You can easily customize the component by:
 - Adjusting the AI scoring algorithms in the recommendation engine
 - Adding new style categories or occasions
 - Customizing the personalization logic
+
+## 🚀 Deployment & Hosting
+
+### Live Demo
+**[🌐 View Live Demo](https://spectacular-naiad-d809f7.netlify.app)**
+
+### Hosting Options
+- **Netlify**: ✅ Currently deployed
+- **Vercel**: `npx vercel --prod`
+- **GitHub Pages**: `npm run deploy`
+- **Firebase**: `firebase deploy`
+- **Manual**: Upload `dist/` folder to any web server
+
+### Quick Deploy
+```bash
+# Build the project
+npm run build
+
+# Deploy to Netlify
+npx netlify-cli deploy --dir=dist --prod
+
+# Deploy to Vercel
+npx vercel --prod
+```
 
 ## 🎭 AI Customization Examples
 
@@ -181,6 +208,3 @@ This component is open source and available under the MIT License.
 ---
 
 **Powered by AI/ML for the future of fashion! 🚀✨**
-=======
-# ai-fashion-recommendation-box
->>>>>>> 9f89876a960c726869f200acc54079670b4c5044
