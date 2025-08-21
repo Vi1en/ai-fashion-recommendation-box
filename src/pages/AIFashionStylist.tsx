@@ -6,25 +6,25 @@ const AIFashionStylist: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       {/* Navigation */}
-      <nav className="absolute top-0 left-0 right-0 z-50 p-4 md:p-6">
+      <nav className="fixed top-0 left-0 right-0 z-50 p-4 md:p-6 bg-gradient-to-r from-slate-900/95 to-purple-900/95 backdrop-blur-lg border-b border-white/10">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
           <Link
             to="/"
-            className="text-xl md:text-2xl font-bold text-white hover:text-purple-300 transition-colors"
+            className="text-xl md:text-2xl font-bold text-white hover:text-purple-300 transition-colors order-1 sm:order-1"
           >
             🤖 AI Fashion
           </Link>
           <Link
             to="/"
-            className="bg-white/10 backdrop-blur-lg border border-white/20 text-white px-4 md:px-6 py-2 md:py-3 rounded-full hover:bg-white/20 transition-all duration-300 text-sm md:text-base"
+            className="bg-white/10 backdrop-blur-lg border border-white/20 text-white px-4 md:px-6 py-2 md:py-3 rounded-full hover:bg-white/20 transition-all duration-300 text-sm md:text-base order-2 sm:order-2"
           >
             ← Back to Home
           </Link>
         </div>
       </nav>
 
-      {/* Main Content */}
-      <div className="pt-24 md:pt-32 pb-16 md:pb-20 px-4 md:px-6">
+      {/* Main Content - Increased top padding to account for fixed nav */}
+      <div className="pt-28 md:pt-36 pb-16 md:pb-20 px-4 md:px-6">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12 md:mb-16">

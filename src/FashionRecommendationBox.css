@@ -1,3 +1,17 @@
+/* Navigation Bar Styles */
+nav {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+nav .max-w-7xl {
+  min-height: 60px;
+}
+
+/* Ensure proper spacing for fixed navigation */
+.fashion-recommendation-box {
+  margin-top: 0;
+}
+
 .fashion-recommendation-box {
   max-width: 1000px;
   margin: 0 auto;
